@@ -1,7 +1,7 @@
 {
 	"name": "areacode-city-states",
 	"description": "Forked from areacodes. Query by phone number to get city and state.",
-	"version": "0.2.1",
+	"version": "0.1.0",
 	"author": "Hasan Serkan Yilmaz <serkanster@gmail.com>",
 	"contributors": [
 		{
@@ -38,7 +38,7 @@
 		"city",
 		"state"
 	],
-	"main": "lib/areacodes.js",
+	"main": "lib/areacode-city-states.js",
 	"engines": {
 		"node": ">=6.0.0"
 	},
