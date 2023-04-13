@@ -3,25 +3,8 @@
 // const CSV = require( 'csv' );
 const assert = require( 'assert' );
 const async = require( 'async' );
-const reference = require( '../lib/reference' );
 const AreaCodes = require( '../lib/areacodes' );
 const database = require( '../lib/data' );
-
-let referenceDatabase = {};
-
-const getReference = function ( done ) {
-
-	async.waterfall( [
-		( done ) => {
-			reference.nanpa( done );
-		},
-		( data, done ) => {
-			referenceDatabase = data;
-			done();
-		}
-	], done );
-
-};
 
 const successCheck = function ( areaCode, phoneNumber, done ) {
 
@@ -48,7 +31,7 @@ const successCheck = function ( areaCode, phoneNumber, done ) {
 						[ 'city', 'string' ],
 						[ 'state', 'string' ],
 						[ 'stateCode', 'string', 2 ],
-						[ 'location', 'object' ]
+						[ 'country', 'string' ]
 					].forEach( function ( checks ) {
 
 						assert.ok( result.hasOwnProperty( checks[ 0 ] ),
@@ -67,14 +50,6 @@ const successCheck = function ( areaCode, phoneNumber, done ) {
 						}
 
 					} );
-
-					assert.strictEqual( typeof result.location.latitude,
-						'number',
-						'latitude should be a number for area code: ' + areaCode );
-					assert.strictEqual( typeof result.location.longitude,
-						'number',
-						'longitude should be a number for area code: ' + areaCode );
-
 				}
 
 			} catch ( e ) {
@@ -110,45 +85,6 @@ const errorCheck = function ( errorMessage, phoneNumber, done ) {
 };
 
 describe( 'general', function () {
-
-	before( function ( done ) {
-		this.timeout( 20000 );
-		getReference( done );
-	} );
-
-	describe( 'compare with NANPA data', function () {
-
-		it( 'should have the same area codes active', function () {
-
-			const actual = Object.keys( database ).sort();
-			const expected = Object.keys( referenceDatabase ).sort();
-
-			const actualObjects = actual
-				.filter( areaCode => { // skip area codes for future use that are not returning from NANPA database yet
-					return expected.indexOf( areaCode ) > -1;
-				} )
-				.map( ( areaCode ) => {
-					return {
-						areaCode: areaCode,
-						stateCode: database[ areaCode ].stateCode,
-						type: database[ areaCode ].type
-					};
-				} );
-			const expectedObjects = expected
-				.map( areaCode => {
-					return {
-						areaCode: areaCode,
-						stateCode: referenceDatabase[ areaCode ].stateCode,
-						type: referenceDatabase[ areaCode ].type
-					};
-				} );
-
-			// assert.strictEqual( actual.length, expected.length, 'should have the correct number of area codes' );
-			assert.deepStrictEqual( actualObjects, expectedObjects );
-
-		} );
-
-	} );
 
 	describe( 'success cases for all area codes in database', function () {
 

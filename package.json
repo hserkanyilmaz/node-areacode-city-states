@@ -1,8 +1,8 @@
 {
-	"name": "areacodes",
-	"description": "An area code lookup tool. Query by phone number, or just export the entire list in object form.",
+	"name": "areacode-city-states",
+	"description": "Forked from areacodes. Query by phone number to get city and state.",
 	"version": "0.2.1",
-	"author": "Anthony Hildoer <anthony@bluerival.com>",
+	"author": "Hasan Serkan Yilmaz <serkanster@gmail.com>",
 	"contributors": [
 		{
 			"name": "Anthony Hildoer",
@@ -15,27 +15,25 @@
 		{
 			"name": "Seth Rogers",
 			"email": "sethhrogers@gmail.com"
+		},
+		{
+			"name": "Hasan Serkan Yilmaz",
+			"email": "serkanster@gmail.com"
 		}
 	],
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:BlueRival/node-areacodes.git"
+		"url": "git@github.com:hserkanyilmaz/node-areacode-city-states.git"
 	},
 	"dependencies": {
 		"doublescore": "0.3.7"
 	},
 	"devDependencies": {
-		"@turf/turf": "^5.1.6",
 		"async": "2.6.2",
-		"cheerio": "^1.0.0-rc.2",
-		"csv-parser": "2.1.0",
-		"mocha": "6.0.0",
-		"request": "2.88.0",
-		"shapefile": "0.6.6"
+		"mocha": "6.0.0"
 	},
 	"keywords": [
 		"areacode",
-		"gps",
 		"geocoding",
 		"city",
 		"state"
