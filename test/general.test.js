@@ -3,7 +3,7 @@
 // const CSV = require( 'csv' );
 const assert = require( 'assert' );
 const async = require( 'async' );
-const AreaCodes = require( '../lib/areacodes' );
+const AreaCodes = require( '../lib/areacode-city-states' );
 const database = require( '../lib/data' );
 
 const successCheck = function ( areaCode, phoneNumber, done ) {
